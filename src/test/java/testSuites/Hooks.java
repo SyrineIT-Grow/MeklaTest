@@ -2,18 +2,22 @@
 
 	package testSuites;
 
-	import helper.Config;
-	import io.cucumber.java.After;
-	import io.cucumber.java.Before;
+	import org.openqa.selenium.By;
+
+import helper.Config;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 
 	public class Hooks {
 
 	    @Before
-	    public void setUp() {
+	    public void setUp() throws InterruptedException {
 	        System.out.println("🔧 [Before] Lancement du navigateur...");
 	        Config.confChrome();
 	        Config.maximazWindow();
-	        Config.driver.get("http://127.0.0.1:3000/sign-in"); // Remplace avec ton URL exacte
+	        Config.driver.get("http://127.0.0.1:3000/sign-in"); 
+	        Thread.sleep(1000);
+	        Config.driver.findElement(By.xpath("/html/body/div[2]/div/button")).click();
 	    }
 
 	    @After
